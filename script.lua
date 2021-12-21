@@ -1,7 +1,7 @@
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kiwi-i/wallys-ui-fork/master/lib.lua", true))()
 library.options.underlinecolor = "rainbow"
 local w = library:CreateWindow('Main')
-w:Section('Autokill')
+w:Section('The Goods')
 local Toggle = w:Toggle("Autokill Toggle", {flag = "TheYes"})
 spawn(
 function() --Makes this a new loop within the running script so it doesn't interfere with the rest of the script
