@@ -39,7 +39,7 @@ spawn(
 function()
   while wait() do
     if w.flags.TheAFK then
-      while wait(5) do
+      if game:GetService("Players").LocalPlayer.Idled then
         local VirtualUser=game:service'VirtualUser'
         VirtualUser:CaptureController()
         VirtualUser:ClickButton2(Vector2.new())
