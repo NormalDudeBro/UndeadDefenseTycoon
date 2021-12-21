@@ -49,8 +49,8 @@ function()
 end
 )
 local serverhop  = w:Button("Click me to join the smallest server!", function() 
+local amountoftimes = 0
 repeat
-  local amountoftimes = 0
   getgenv().AutoTeleport = true --I didnt make this serverhop script either, I just put it together in a gui credit to https://v3rmillion.net/showthread.php?tid=1107863
   getgenv().DontTeleportTheSameNumber = false
   getgenv().CopytoClipboard = true
