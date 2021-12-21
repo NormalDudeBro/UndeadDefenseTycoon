@@ -52,7 +52,7 @@ local serverhop  = w:Button("Click me to join the smallest server!", function()
 local amountoftimes = 0
 repeat
   getgenv().AutoTeleport = true --I didnt make this serverhop script either, I just put it together in a gui credit to https://v3rmillion.net/showthread.php?tid=1107863
-  getgenv().DontTeleportTheSameNumber = false
+  getgenv().DontTeleportTheSameNumber = true
   getgenv().CopytoClipboard = true
 
   if not game:IsLoaded() then
