@@ -33,3 +33,17 @@ function() --Makes this a new loop within the running script so it doesn't inter
   end
 end
 )
+local Toggle = w:Toggle("Anti AFK toggle", {flag = "TheAFK"})
+spawn(
+function() --Makes this a new loop within the running script so it doesn't interfere with the rest of the script
+  while wait() do
+    if w.flags.TheAFK then
+      while wait(5) do
+        local VirtualUser=game:service'VirtualUser'
+        VirtualUser:CaptureController()
+        VirtualUser:ClickButton2(Vector2.new())
+      end
+    end
+  end
+end
+)
