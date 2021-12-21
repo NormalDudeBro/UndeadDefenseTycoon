@@ -59,7 +59,7 @@ if not game:IsLoaded() then
   until game:IsLoaded()
 end
 
-local maxplayers = 8
+local maxplayers = math.inf
 local serversmaxplayer;
 local goodserver;
 local gamelink = "https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100"
