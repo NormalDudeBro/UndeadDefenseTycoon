@@ -1,3 +1,4 @@
+print("Thank you for using NormalDudeBro's Undead Defense Tycoon's script!"
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kiwi-i/wallys-ui-fork/master/lib.lua", true))()
 library.options.underlinecolor = "rainbow"
 local w = library:CreateWindow('Main')
