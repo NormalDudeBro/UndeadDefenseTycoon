@@ -37,14 +37,14 @@ end
 local Toggle = w:Toggle("Anti AFK toggle", {flag = "TheAFK"})
 spawn(
 function()
-  if w.flags.TheAFK then
-    local VirtualUser=game:service'VirtualUser'
-    game:service'Players'.LocalPlayer.Idled:connect(function()
-    VirtualUser:CaptureController()
-    VirtualUser:ClickButton2(Vector2.new())
-    end)
+  while wait() do
+    if w.flags.TheAFK then
+      while wait(600) do
+        local VirtualUser=game:service'VirtualUser'
+        VirtualUser:CaptureController()
+        VirtualUser:ClickButton2(Vector2.new())
+      end
+    end
   end
-end
-end
 end
 )
