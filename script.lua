@@ -9,7 +9,7 @@ function()
   while wait() do
     if w.flags.TheYes then
       wait(0.01)
-      local plr = game.Players.LocalPlayer
+      local plr = game.Players.LocalPlayer --I didnt make the autokill script, credit to https://v3rmillion.net/showthread.php?tid=1145285
       for i,v in pairs(workspace.Zombies:GetChildren()) do
         if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Head") and v:FindFirstChildOfClass("Humanoid") and v:FindFirstChildOfClass("Humanoid").Health ~= 0 then
           if not plr.Character:FindFirstChildOfClass("Tool") then
@@ -48,11 +48,11 @@ function()
   end
 end
 )
-local serverhop  = w:Button("Click me to join the smallest server!", function() --I DIDNT MAKE THIS EITHER CREDIT TO https://v3rmillion.net/showthread.php?tid=1107863
+local serverhop  = w:Button("Click me to join the smallest server!", function() 
 repeat
   local amountoftimes = 0
-  getgenv().AutoTeleport = true
-  getgenv().DontTeleportTheSameNumber = true --If you set this true it won't teleport to the server if it has the same number of players as your current server
+  getgenv().AutoTeleport = true --I didnt make this serverhop script either, I just put it together in a gui credit to https://v3rmillion.net/showthread.php?tid=1107863
+  getgenv().DontTeleportTheSameNumber = false
   getgenv().CopytoClipboard = true
 
   if not game:IsLoaded() then
