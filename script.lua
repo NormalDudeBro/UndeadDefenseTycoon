@@ -49,64 +49,68 @@ function()
 end
 )
 local serverhop  = w:Button("Click me to join the smallest server!", function() --I DIDNT MAKE THIS EITHER CREDIT TO https://v3rmillion.net/showthread.php?tid=1107863
-getgenv().AutoTeleport = true
-getgenv().DontTeleportTheSameNumber = true --If you set this true it won't teleport to the server if it has the same number of players as your current server
-getgenv().CopytoClipboard = true
+repeat
+  local amountoftimes = 0
+  getgenv().AutoTeleport = true
+  getgenv().DontTeleportTheSameNumber = true --If you set this true it won't teleport to the server if it has the same number of players as your current server
+  getgenv().CopytoClipboard = true
 
-if not game:IsLoaded() then
+  if not game:IsLoaded() then
     print("Game is loading waiting...")
     repeat
-        wait()
+      wait()
     until game:IsLoaded()
-    end
+  end
 
-local maxplayers = math.huge
-local serversmaxplayer;
-local goodserver;
-local gamelink = "https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100"
+  local maxplayers = math.huge
+  local serversmaxplayer;
+  local goodserver;
+  local gamelink = "https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100"
 
-function serversearch()
+  function serversearch()
     for _, v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync(gamelink)).data) do
-        if type(v) == "table" and maxplayers > v.playing then
-            serversmaxplayer = v.maxPlayers
-            maxplayers = v.playing
-            goodserver = v.id
-        end
+      if type(v) == "table" and maxplayers > v.playing then
+        serversmaxplayer = v.maxPlayers
+        maxplayers = v.playing
+        goodserver = v.id
+      end
     end
     print("Currently checking the servers with max this number of players : " .. maxplayers .. "")
-end
+  end
 
-function getservers()
+  function getservers()
     serversearch()
     for i,v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync(gamelink))) do
-        if i == "nextPageCursor" then
-            if gamelink:find("&cursor=") then
-                local a = gamelink:find("&cursor=")
-                local b = gamelink:sub(a)
-                gamelink = gamelink:gsub(b, "")
-            end
-            gamelink = gamelink .. "&cursor=" ..v
-            getservers()
+      if i == "nextPageCursor" then
+        if gamelink:find("&cursor=") then
+          local a = gamelink:find("&cursor=")
+          local b = gamelink:sub(a)
+          gamelink = gamelink:gsub(b, "")
         end
+        gamelink = gamelink .. "&cursor=" ..v
+        getservers()
+      end
     end
-end
+  end
 
-getservers()
+  getservers()
 
-    print("All of the servers are searched") 
-	print("Server : " .. goodserver .. " Players : " .. maxplayers .. "/" .. serversmaxplayer .. "")
-    if CopytoClipboard then
+  print("All of the servers are searched")
+  print("Server : " .. goodserver .. " Players : " .. maxplayers .. "/" .. serversmaxplayer .. "")
+  if CopytoClipboard then
     setclipboard(goodserver)
+  end
+  if AutoTeleport then
+    if DontTeleportTheSameNumber then
+      if #game:GetService("Players"):GetPlayers() - 1 == maxplayers then
+        return warn("It has same number of players (except you)")
+      elseif goodserver == game.JobId then
+        return warn("Your current server is the most empty server atm")
+      end
     end
-    if AutoTeleport then
-        if DontTeleportTheSameNumber then 
-            if #game:GetService("Players"):GetPlayers() - 1 == maxplayers then
-                return warn("It has same number of players (except you)")
-            elseif goodserver == game.JobId then
-                return warn("Your current server is the most empty server atm") 
-            end
-        end
-        print("AutoTeleport is enabled. Teleporting to : " .. goodserver)
-        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, goodserver)
-    end
+    print("AutoTeleport is enabled. Teleporting to : " .. goodserver)
+    game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, goodserver)
+  end
+  amountoftimes = amountoftimes + 1
+until amountoftimes == 10
 end)
