@@ -39,12 +39,12 @@ spawn(
 function()
   while wait() do
     if w.flags.TheAFK then
-      while wait(600) do
-        local VirtualUser=game:service'VirtualUser'
-        VirtualUser:CaptureController()
-        VirtualUser:ClickButton2(Vector2.new())
-      end
+      wait(600)
+      local VirtualUser=game:service'VirtualUser'
+      VirtualUser:CaptureController()
+      VirtualUser:ClickButton2(Vector2.new())
     end
   end
+end
 end
 )
