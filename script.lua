@@ -4,7 +4,7 @@ local w = library:CreateWindow('Main')
 w:Section('The Goods')
 local Toggle = w:Toggle("Autokill Toggle", {flag = "TheYes"})
 spawn(
-function() --Makes this a new loop within the running script so it doesn't interfere with the rest of the script
+function()
   while wait() do
     if w.flags.TheYes then
       local plr = game.Players.LocalPlayer
@@ -35,7 +35,7 @@ end
 )
 local Toggle = w:Toggle("Anti AFK toggle", {flag = "TheAFK"})
 spawn(
-function() --Makes this a new loop within the running script so it doesn't interfere with the rest of the script
+function()
   while wait() do
     if w.flags.TheAFK then
       while wait(5) do
