@@ -7,6 +7,7 @@ spawn(
 function()
   while wait() do
     if w.flags.TheYes then
+        wait(0.01)
       local plr = game.Players.LocalPlayer
       for i,v in pairs(workspace.Zombies:GetChildren()) do
         if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Head") and v:FindFirstChildOfClass("Humanoid") and v:FindFirstChildOfClass("Humanoid").Health ~= 0 then
